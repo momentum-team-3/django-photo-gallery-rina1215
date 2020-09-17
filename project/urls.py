@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+from photographygal import views
 
 urlpatterns = [
+    path('', views.homepage, name='homepage'),
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
 ]
 
 if settings.DEBUG:
