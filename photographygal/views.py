@@ -1,6 +1,6 @@
-from django.db import models
-#from users.models import User
-#from imagekit___
+
+from django.shortcuts import render, redirect
+
 
 #GALLERY
 #All Gallery thumbnail can be viewed by all---public
@@ -47,31 +47,58 @@ from django.db import models
 #Reg user can upvote any picture from any gallery
 #Reg user can view list of upvoted pictures
 #Reg users can be the creator its own galleries, add, delete, view,update
+# Create your views here.
+
+
+#get and post for returning responses
+#my urls will be routed to ea functions
+#what can I user do when on it home page?
+#What can I user request?
+
+#sign up
+#return home
+#view list of all default thumbnails assigned to ea gallery (public)
+#view deatails of gallery if resgistered, if not redirect to sign up page
+#add a gallery if registered if not redirect sign up page
+#add pictures to gallery if signed up
+#view_all pictures added to gallery as a list
+#detail_pictures------view individual pictures w comments
+#delete_gallery
+#delete_photo
+#list_all upvoted or stared
+##search by titles (or use comments as part of search db search)
 
 
 
+#CRUD
 
 
+def homepage(request):
+    return render(request, "photographygal/homepage.html")
+    # home page to list all gallery thumnails so maybe its list_gallery.html
 
 
+def list_pictures(request): #when requesting an url of individual gallery
+    pass
 
+def show_pic_details (request): #if registered
+    pass
 
+def upvote_star (request): #option to registered users
+    pass 
 
-# Create your models here.
-class Gallery:(models.Model):
-    #creator = models.ForeignKey(User, on delete=model.CASCADE, related_name='gallery') if an owner is deleted all its pictures gets deleted
-    #cover_photo=models.ForeignKey('Picture', on_on delete=models.CASCADE, related_name=....)#this is the default thumbnail
-    #cover_photo is public BooleanField?
-    #photo_thumbnail can be an image field . the relationship is one gallery can have one thumbnail from default photo. ThumbNail is FK to gallery
-    title = models.CharField (max_length = 150)
-    #created_by = models. date field
-    #modify_by = models. date field
+def show_gallery (request): #home listed all gallery thumbnail default pic redirect to list.html
+    pass
 
-class Picture:(models.Model):
-    #creator = models.ForeignKey(User, on delete = model.CASCADE, related_name='pictures') if an owner is deleted all its pictures gets deleted
-    title = models.CharField(max_length = 150)
-    comments = models.TextField(max_length= 400)
-    gallery = models.ForeignKey (Gallery, on_delete = models.CASCADE) #Many to one ---> many pictures to one album
-    #uploaded time, datefield
-    #modified by date field
-    #upvoted = models.ManyToManyField(User, related_name='favorite_photos', blank=True) any registered user my upvote many pictures #should I use json
+def add_photo (request): #add to gallery by registered user
+    pass
+
+def add_gallery(request): #if reg or else redirect to sign up
+    pass
+
+def edit_gallery (request): #if registered edit and post and save or redirect to sign up
+    pass
+
+#def upvote_star (request) jason request?
+
+#def add or remove pic for gallery
