@@ -16,6 +16,8 @@ psycopg2 = "*"
 django-heroku = "*"
 gunicorn = "*"
 django-registration-redux = "*"
+pillow = "*"
+django-imagekit = "*"
 
 [requires]
 python_version = "3.8"

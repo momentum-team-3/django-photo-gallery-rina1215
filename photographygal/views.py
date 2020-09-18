@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-#from .model import Gallery, Picture
+from .models import Gallery, Picture
 
 
 #GALLERY
@@ -76,6 +76,7 @@ from django.shortcuts import render, redirect
 
 def homepage(request):
     return render(request, "photographygal/homepage.html")
+
     # home page to list all gallery thumnails so maybe its list_gallery.html
 
 
@@ -92,7 +93,8 @@ def show_gallery (request): #home listed all gallery thumbnail default pic redir
     pass
 
 def add_photo (request): #add to gallery by registered user
-    return render(request, "photographygal/homepage.html")
+    pass
+
 
 def add_gallery(request): #if reg or else redirect to sign up
     pass

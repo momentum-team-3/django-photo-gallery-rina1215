@@ -23,7 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('add_photo/', views.add_gallery, name='add photo')
+
 ]
+#registration/logout.html
 
 if settings.DEBUG:
     import debug_toolbar
