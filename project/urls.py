@@ -16,16 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+
+#from view func
 from photographygal import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('add_photo/', views.add_gallery, name='add photo')
+
+    path('photographygal/add_galleries/', views.add_gallery, name='create_gallery'),
+    #path('photographygal/homepage.html/', views.list_gallery, name='gallery'),
+
+    #gallery view url
+    #path("gallery/view/<int:gallery_pk>", views.view_gallery, name="view_gallery"),
+    #path('photographygal/', views.list_gallery, name='gallery'),
+    #path('photographygal/', views.add_gallery, name='gallery'),
+    #"/photographygal/add_galleries.html"
 
 ]
-#registration/logout.html
 
 if settings.DEBUG:
     import debug_toolbar

@@ -1,24 +1,29 @@
 
-<!--this is the first page in addition to the base and conditons to what will show-->
+<!--this is the first page for reg users in addition to the base.htm and conditons to what will show-->
 {% extends "base.html" %}
 
 {% block content %}
   {% if user.is_authenticated %}
-    <p>Welcome ,
-      {{ user.username }} you are FINALLY logged in<br></br>
-      <p><b>+</b> picture to GaL|3ry</p>
-      <p>title:</p>
+    <p>w3Lcom3,
+      {{ user.username }} <br></br>
+      <p><h3>&#10133;</h3><a href="{% url 'create_gallery' %}">create new GaL|3rY</a>
+      .<br></br>
+      <p><h3>&#10133;</h3><a href="/photographygal/list_galleries.html">add photos to GaL|3rY</a>
+      <!--<img src="{{ show_gallery.gallery_thumbnail.url }}" / ||show_gallery view models>-->
       .<br></br>
       .<br></br>
       .<br></br>
       .<br></br>
-    
-      <p><a href="{% url 'auth_logout' %}">Log out</a></p>
+      .<br></br>
+      <p><a href="{% url 'auth_logout' %}">LoG 0u|</a></p>
   {% else %}
     <p>
-      <a href="{% url 'auth_login' %}">Login</a>
-      or
-      <a href="{% url 'registration_register' %}">sign up</a>
+      <a href="{% url 'auth_login' %}">LoG |n</a>|
+      <!--a href="{% url 'list_galleries' %}"Vi3w GaLl3ri3s</a> option to non reg users view galleries-->
+      <a href="{% url 'registration_register' %}">R3gist3r</a>
     </p>
   {% endif %}
-{% endblock %}<h1><pre> Ph0t0 GaL|3rY</pre></h1>
+{% endblock %}
+
+
+

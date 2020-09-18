@@ -1,7 +1,10 @@
 
-from django.shortcuts import render, redirect
-from .models import Gallery, Picture
+from django.shortcuts import render, redirect, get_object_or_404
+from imagekit import ImageSpec
+from imagekit.processors import ResizeToFill
 
+from .models import Gallery, Picture
+from .forms import  GalleryForm, PictureForm
 
 #GALLERY
 #All Gallery thumbnail can be viewed by all---public
@@ -76,32 +79,55 @@ from .models import Gallery, Picture
 
 def homepage(request):
     return render(request, "photographygal/homepage.html")
-
     # home page to list all gallery thumnails so maybe its list_gallery.html
 
 
-def list_pictures(request): #when requesting an url of individual gallery
+def add_gallery (request): #add to gallery by registered user
+    if request.method=="POST":
+        form = GalleryForm(data=request.POST)
+        if form.is_valid():
+                gallery = form.save(commit=False)
+                gallery.save()
+                return redirect(to='homepage')
+    else:
+        form = GalleryForm()
+
+
+    return render(request, 'photographygal/add_galleries.html', {'form': form})
+
+
+
+def list_gallery (request):
+    gallery = Gallery.objects.all()
+    return render(request, 'photographygal/homepage.html',
+    {'gallery': gallery}) #show all thumbnails of gallery picture before selecting one to see all pictures inside
+
+#def detail_gallery (request):
+    #gallery_inside= Picture.objects.all()
+    #return render(request, 'photographygal/list_picture.html',
+    #{'picture': picture}) #show all thumbnails of gallery picture before selecting to see details 
+
+
+def list_picture(request): #when requesting an url of individual gallery
     pass
 
-def show_pic_details (request): #if registered
+def detail_picture(request): #if registered
     pass
 
 def upvote_star (request): #option to registered users
     pass 
 
-def show_gallery (request): #home listed all gallery thumbnail default pic redirect to list.html
-    pass
 
-def add_photo (request): #add to gallery by registered user
-    pass
-
-
-def add_gallery(request): #if reg or else redirect to sign up
-    pass
 
 def edit_gallery (request): #if registered edit and post and save or redirect to sign up
+    pass
+
+def delete_gallery (request): #if registered edit and post and save or redirect to sign up
     pass
 
 #def upvote_star (request) jason request?
 
 #def add or remove pic for gallery
+
+
+

@@ -1,4 +1,6 @@
 from django.db import models
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFit
 #from users.models import User
 #from imagekit___
 
@@ -63,15 +65,33 @@ class Gallery (models.Model):
     #cover_photo=models.ForeignKey('Picture', on_on delete=models.CASCADE, related_name=....)#this is the default thumbnail
     #cover_photo is public BooleanField?
     #photo_thumbnail can be an image field . the relationship is one gallery can have one thumbnail from default photo. ThumbNail is FK to gallery
-    title = models.CharField (max_length = 150)
-    #created_by = models. date field
-    #modify_by = models. date field
+    title = models.CharField (max_length = 250)
+    date_added = models.DateField(auto_now_add=True, null=True)
+    date_updated = models.DateField(auto_now=True, null=True)
+    comments = models.TextField(max_length= 400)
+    #public_gallery = models.BooleanField(default=True)
+
+
+
 
 class Picture (models.Model):
     #creator = models.ForeignKey(User, on delete = model.CASCADE, related_name='pictures') if an owner is deleted all its pictures gets deleted
     title = models.CharField(max_length = 150)
+    #picture_thumb = ImageSpecField(source="picture", processors=[ResizeToFit(200,200)], format="JPEG", options={"quality": 80})
     comments = models.TextField(max_length= 400)
-    gallery = models.ForeignKey (Gallery, on_delete = models.CASCADE) #Many to one ---> many pictures to one album
+    #gallery = models.ForeignKey (Gallery, on_delete = models.CASCADE) #Many to one ---> many pictures to one album
     #uploaded time, datefield
     #modified by date field
     #upvoted = models.ManyToManyField(User, related_name='favorite_photos', blank=True) any registered user my upvote many pictures #should I use json
+
+
+#class Profile(models.Model):
+    #avatar = models.ImageField(upload_to='avatars')
+    #gallery_thumbnail = ImageSpecField(source='gallery',
+                                    #processors=[ResizeToFill(100, 50)],
+                                    #format='JPEG',
+                                    #options={'quality': 60})
+
+#profile = Profile.objects.all()[0]
+#print(profile.gallery_thumbnail.url)    # > /media/CACHE/images/982d5af84cddddfd0fbf70892b4431e4.jpg
+#print(profile.gallery_thumbnail.width)  # > 100

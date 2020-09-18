@@ -17,7 +17,7 @@ import environ
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False),)
+    DEBUG=(bool, True),)
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / ...
