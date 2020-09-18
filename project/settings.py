@@ -158,7 +158,7 @@ del DATABASES['default']['OPTIONS']['sslmode']
 
 # Registration and login
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/' #how to redirect to hp?
 
 #if DEBUG:
     #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

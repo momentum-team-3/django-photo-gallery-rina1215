@@ -1,5 +1,6 @@
 
 from django.shortcuts import render, redirect
+#from .model import Gallery, Picture
 
 
 #GALLERY
@@ -91,7 +92,7 @@ def show_gallery (request): #home listed all gallery thumbnail default pic redir
     pass
 
 def add_photo (request): #add to gallery by registered user
-    pass
+    return render(request, "photographygal/homepage.html")
 
 def add_gallery(request): #if reg or else redirect to sign up
     pass

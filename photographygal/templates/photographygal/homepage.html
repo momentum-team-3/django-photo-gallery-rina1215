@@ -1,10 +1,19 @@
-  
+
+<!--this is the first page in addition to the base and conditons to what will show-->
 {% extends "base.html" %}
 
 {% block content %}
   {% if user.is_authenticated %}
-    <p>I hope this works!!!!!, {{ user.username }}!</p>
-    <p><a href="{% url 'auth_logout' %}">Log out</a></p>
+    <p>Welcome ,
+      {{ user.username }} you are FINALLY logged in<br></br>
+      <p><b>+</b> picture to GaL|3ry</p>
+      <p>title:</p>
+      .<br></br>
+      .<br></br>
+      .<br></br>
+      .<br></br>
+    
+      <p><a href="{% url 'auth_logout' %}">Log out</a></p>
   {% else %}
     <p>
       <a href="{% url 'auth_login' %}">Login</a>
@@ -12,4 +21,4 @@
       <a href="{% url 'registration_register' %}">sign up</a>
     </p>
   {% endif %}
-{% endblock %}
+{% endblock %}<h1><pre> Ph0t0 GaL|3rY</pre></h1>

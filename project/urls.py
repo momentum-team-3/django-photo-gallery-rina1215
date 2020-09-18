@@ -20,9 +20,9 @@ from photographygal import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    #path("photographygal/", include(""photographygal/homepage.html"")),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
+    path('add_photo/', views.add_gallery, name='add photo')
 ]
 
 if settings.DEBUG:
