@@ -6,11 +6,11 @@
 
 <p> {{ user.username }} Create GaL|3rY </p><br></br>
 
-<form class="mt2 mb0 f6 fw4 ttu tracked" action="{% url 'create_gallery' %}" method="POST">
+<form action="{% url 'add_gallery' %}" method="POST"></form>
     {% csrf_token %}
     {{ form.as_p }}
     <div>
-        <button class="mt2 mb0 f6 fw4 ttu tracked oh3 f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-dark-pink" type="submit">add gallery</button>
+        <button type="submit">add gallery</button>
         </div>
     </form>
 

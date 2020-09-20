@@ -61,7 +61,8 @@ from imagekit.processors import ResizeToFit
 
 # Create your models here.
 class Gallery (models.Model):
-    #creator = models.ForeignKey(User, on delete=model.CASCADE, related_name='gallery') if an owner is deleted all its pictures gets deleted
+    #owner = models.ForeignKey(User, on delete=model.CASCADE, related_name='gallery') #if an owner is deleted all its pictures gets deleted
+    #featured_photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name= '+',  null=True, blank=True)
     #cover_photo=models.ForeignKey('Picture', on_on delete=models.CASCADE, related_name=....)#this is the default thumbnail
     #cover_photo is public BooleanField?
     #photo_thumbnail can be an image field . the relationship is one gallery can have one thumbnail from default photo. ThumbNail is FK to gallery

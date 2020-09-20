@@ -9,12 +9,15 @@ class GalleryForm(forms.ModelForm):
             "comments",
         ]
 
+
+
+
 class PictureForm(forms.ModelForm):
     class Meta:
         model = Picture
         fields = [
             "title",
             "comments",
-        
-        
+
+
         ]

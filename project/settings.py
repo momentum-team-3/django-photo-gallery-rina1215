@@ -17,7 +17,7 @@ import environ
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, True),)
+    DEBUG=(bool, False),)
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / ...
@@ -37,6 +37,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -138,7 +139,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 # Custom user model
 
 AUTH_USER_MODEL = 'users.User'
@@ -161,5 +162,5 @@ del DATABASES['default']['OPTIONS']['sslmode']
 
 LOGIN_REDIRECT_URL = '/' #how to redirect to hp?
 
-#if DEBUG:
-    #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

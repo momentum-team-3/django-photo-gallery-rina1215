@@ -6,9 +6,9 @@
   {% if user.is_authenticated %}
     <p>w3Lcom3,
       {{ user.username }} <br></br>
-      <p><h3>&#10133;</h3><a href="{% url 'create_gallery' %}">create new GaL|3rY</a>
-      .<br></br>
-      <p><h3>&#10133;</h3><a href="/photographygal/list_galleries.html">add photos to GaL|3rY</a>
+      <p><h3>&#10133;</h3><a href="{% url 'add_gallery' %}">create new GaL|3rY</a></p>
+
+      <p><h3>&#10133;</h3><a href="{% url 'add_gallery' %"}>add photos to GaL|3rY</a>
       <!--<img src="{{ show_gallery.gallery_thumbnail.url }}" / ||show_gallery view models>-->
       .<br></br>
       .<br></br>
@@ -19,7 +19,7 @@
   {% else %}
     <p>
       <a href="{% url 'auth_login' %}">LoG |n</a>|
-      <!--a href="{% url 'list_galleries' %}"Vi3w GaLl3ri3s</a> option to non reg users view galleries-->
+      <!--a href="% url 'list_galleries' %"Vi3w GaLl3ri3s</a> option to non reg users view galleries-->
       <a href="{% url 'registration_register' %}">R3gist3r</a>
     </p>
   {% endif %}

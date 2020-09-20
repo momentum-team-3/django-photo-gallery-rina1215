@@ -1,7 +1,7 @@
 
-from django.shortcuts import render, redirect, get_object_or_404
-from imagekit import ImageSpec
-from imagekit.processors import ResizeToFill
+from django.shortcuts import render
+#from imagekit import ImageSpec
+#from imagekit.processors import ResizeToFill
 
 from .models import Gallery, Picture
 from .forms import  GalleryForm, PictureForm
@@ -88,19 +88,32 @@ def add_gallery (request): #add to gallery by registered user
         if form.is_valid():
                 gallery = form.save(commit=False)
                 gallery.save()
-                return redirect(to='homepage')
+                return redirect(to='list_gallery') #I want all gallery thumbnail to display
     else:
         form = GalleryForm()
 
 
     return render(request, 'photographygal/add_galleries.html', {'form': form})
 
+#def add_photo (request): #add to gallery by registered user
+    #if request.method=="POST":
+        #form = PictureForm(data=request.POST)
+        #if form.is_valid():
+                #picture = form.save(commit=False)
+                #picture.save()
+                #return redirect(to='list_pictures') #I want all gallery thumbnail to display
+    #else:
+        #form = PictureForm()
 
 
-def list_gallery (request):
-    gallery = Gallery.objects.all()
-    return render(request, 'photographygal/homepage.html',
-    {'gallery': gallery}) #show all thumbnails of gallery picture before selecting one to see all pictures inside
+    #return render(request, 'photographygal/add_photos.html', {'form': form})
+
+
+
+#def list_gallery (request):
+    #gallery = Gallery.objects.all()
+    #return render(request, 'photographygal/homepage.html',
+    #{'gallery': gallery}) #show all thumbnails of gallery picture before selecting one to see all pictures inside
 
 #def detail_gallery (request):
     #gallery_inside= Picture.objects.all()
@@ -128,6 +141,4 @@ def delete_gallery (request): #if registered edit and post and save or redirect 
 #def upvote_star (request) jason request?
 
 #def add or remove pic for gallery
-
-
 

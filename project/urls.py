@@ -16,17 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+from django.conf.urls import include
+#from django.conf.urls.static import static
 
-#from view func
+#from view of my app to bring my function 
 from photographygal import views
+
+
+
+#list of with individual routes to match with view function to get executed
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
 
-    path('photographygal/add_galleries/', views.add_gallery, name='create_gallery'),
-    #path('photographygal/homepage.html/', views.list_gallery, name='gallery'),
+    path('photographygal/add_gallery/', views.add_gallery, name='add_gallery'),
+    #path('photographygal/add_photos/', views.add_photo, name='add_photo'),
 
     #gallery view url
     #path("gallery/view/<int:gallery_pk>", views.view_gallery, name="view_gallery"),
@@ -34,7 +40,7 @@ urlpatterns = [
     #path('photographygal/', views.add_gallery, name='gallery'),
     #"/photographygal/add_galleries.html"
 
-]
+]#+ static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
