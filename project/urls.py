@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls import include
-#from django.conf.urls.static import static
+from django.conf.urls.static import static
+from rest_framework import routers, serializers, viewsets
 
 #from view of my app to bring my function 
 from photographygal import views
@@ -27,12 +28,17 @@ from photographygal import views
 #list of with individual routes to match with view function to get executed
 
 urlpatterns = [
-    path('', views.homepage, name='homepage'),
     path('admin/', admin.site.urls),
+    path('', views.homepage, name='homepage'),
     path('accounts/', include('registration.backends.simple.urls')),
-
+    #path('api-auth/', include('rest_framework.urls'))    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'
+    #GALLERY url's path
     path('photographygal/add_gallery/', views.add_gallery, name='add_gallery'),
-    #path('photographygal/add_photos/', views.add_photo, name='add_photo'),
+    path('photographygal/list_gallery/', views.list_gallery, name="list_gallery"),
+
+
+    #PHOTO url's path
+    path('photographygal/add_photo/', views.add_photo, name='add_photo'),
 
     #gallery view url
     #path("gallery/view/<int:gallery_pk>", views.view_gallery, name="view_gallery"),
@@ -40,7 +46,7 @@ urlpatterns = [
     #path('photographygal/', views.add_gallery, name='gallery'),
     #"/photographygal/add_galleries.html"
 
-]#+ static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

@@ -1,7 +1,7 @@
 from django.db import models
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFit
-#from users.models import User
+from imagekit.processors import ResizeToFit, ResizeToFill
+from users.models import User
 #from imagekit___
 
 #GALLERY
@@ -61,38 +61,18 @@ from imagekit.processors import ResizeToFit
 
 # Create your models here.
 class Gallery (models.Model):
-    #owner = models.ForeignKey(User, on delete=model.CASCADE, related_name='gallery') #if an owner is deleted all its pictures gets deleted
-    #featured_photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name= '+',  null=True, blank=True)
-    #cover_photo=models.ForeignKey('Picture', on_on delete=models.CASCADE, related_name=....)#this is the default thumbnail
-    #cover_photo is public BooleanField?
-    #photo_thumbnail can be an image field . the relationship is one gallery can have one thumbnail from default photo. ThumbNail is FK to gallery
-    title = models.CharField (max_length = 250)
-    date_added = models.DateField(auto_now_add=True, null=True)
-    date_updated = models.DateField(auto_now=True, null=True)
-    comments = models.TextField(max_length= 400)
-    #public_gallery = models.BooleanField(default=True)
+    #creator = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='gallery') #one user may create many galleries
+    name = models.CharField (max_length = 150, null=False, blank=False)
+    description = models.TextField(max_length= 400)
+    image = models.ImageField(upload_to='gallery', null=True)
+    image_reg = ImageSpecField(source='image', processors=[ResizeToFit (200, 200)],format='JPEG',options={'quality': 80})
 
 
 
 
 class Picture (models.Model):
-    #creator = models.ForeignKey(User, on delete = model.CASCADE, related_name='pictures') if an owner is deleted all its pictures gets deleted
-    title = models.CharField(max_length = 150)
-    #picture_thumb = ImageSpecField(source="picture", processors=[ResizeToFit(200,200)], format="JPEG", options={"quality": 80})
-    comments = models.TextField(max_length= 400)
-    #gallery = models.ForeignKey (Gallery, on_delete = models.CASCADE) #Many to one ---> many pictures to one album
-    #uploaded time, datefield
-    #modified by date field
-    #upvoted = models.ManyToManyField(User, related_name='favorite_photos', blank=True) any registered user my upvote many pictures #should I use json
+    #owner = models.ForeignKey(User, on delete = model.CASCADE, related_name='picture') #if an owner is deleted all its pictures gets deleted
+    name = models.CharField(max_length = 150, null=False, blank=False)
+    description = models.TextField(max_length= 400, null=False, blank=False)
+    image = models.ImageField(upload_to='gallery', null=True)
 
-
-#class Profile(models.Model):
-    #avatar = models.ImageField(upload_to='avatars')
-    #gallery_thumbnail = ImageSpecField(source='gallery',
-                                    #processors=[ResizeToFill(100, 50)],
-                                    #format='JPEG',
-                                    #options={'quality': 60})
-
-#profile = Profile.objects.all()[0]
-#print(profile.gallery_thumbnail.url)    # > /media/CACHE/images/982d5af84cddddfd0fbf70892b4431e4.jpg
-#print(profile.gallery_thumbnail.width)  # > 100

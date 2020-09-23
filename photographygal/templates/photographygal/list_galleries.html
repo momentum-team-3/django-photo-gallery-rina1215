@@ -1,22 +1,15 @@
+
 {% extends "base.html" %}
 
 {% block content %}
-{% if user.is_authenticated %}
-    <p>
-    {{ user.username }} you are viewing the thumbnails of all users' favorite galleries<br></br>
-    <!--<img src="{{ show_gallery.gallery_thumbnail.url }}" / ||show_gallery view models>--> 
-    .<br></br>
-    .<br></br>
-    .<br></br>
-    .<br></br>
-    .<br></br>
+<p>All Galleries</p>
 
-    <p><a href="{% url 'auth_logout' %}">LoG 0u|</a></p>
-{% else %}
-    <p>
-    <a href="{% url 'auth_login' %}">LoG |n</a>
-    |
-    <a href="{% url 'registration_register' %}">R3gist3r</a>
-    </p>
-{% endif %}
-{% endblock %}<h1><pre> Ph0t0 GaL|3rY</pre></h1>
+    {% for gallery in galleries %}
+    {% if gallery.image %}
+        <img src='{{ gallery.image.url}}'/>
+    {% endif %}
+    {% empty %}
+        <p>hello {{ user.username }} you have no galleries added</p>
+    {% endfor %}
+
+{% endblock %}

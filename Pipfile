@@ -18,6 +18,9 @@ gunicorn = "*"
 django-registration-redux = "*"
 pillow = "*"
 django-imagekit = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.8"

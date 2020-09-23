@@ -1,10 +1,12 @@
 
-from django.shortcuts import render
-#from imagekit import ImageSpec
-#from imagekit.processors import ResizeToFill
-
+from django.shortcuts import render, redirect, get_object_or_404
+from imagekit import ImageSpec
+from imagekit.processors import ResizeToFill
+from django.views import View
 from .models import Gallery, Picture
 from .forms import  GalleryForm, PictureForm
+#from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required 
 
 #GALLERY
 #All Gallery thumbnail can be viewed by all---public
@@ -79,56 +81,49 @@ from .forms import  GalleryForm, PictureForm
 
 def homepage(request):
     return render(request, "photographygal/homepage.html")
-    # home page to list all gallery thumnails so maybe its list_gallery.html
+    
 
 
-def add_gallery (request): #add to gallery by registered user
-    if request.method=="POST":
-        form = GalleryForm(data=request.POST)
-        if form.is_valid():
-                gallery = form.save(commit=False)
-                gallery.save()
-                return redirect(to='list_gallery') #I want all gallery thumbnail to display
+def add_gallery(request):
+    if request.method == 'GET':
+        form =GalleryForm()
     else:
-        form = GalleryForm()
+        form=GalleryForm(data=request.POST, files=request.FILES) #accept data from db and any files to download
+        if form. is_valid():
+            form.save()
+            return redirect (to='list_gallery')
+    return render (request, "photographygal/add_galleries.html", {'form':form})
 
 
-    return render(request, 'photographygal/add_galleries.html', {'form': form})
-
-#def add_photo (request): #add to gallery by registered user
-    #if request.method=="POST":
-        #form = PictureForm(data=request.POST)
-        #if form.is_valid():
-                #picture = form.save(commit=False)
-                #picture.save()
-                #return redirect(to='list_pictures') #I want all gallery thumbnail to display
-    #else:
-        #form = PictureForm()
-
-
-    #return render(request, 'photographygal/add_photos.html', {'form': form})
+def list_gallery (request):
+    galleries = Gallery.objects.all()
+    response = render(request, 'photographygal/list_galleries.html', {'galleries': galleries})
+    return response
 
 
 
-#def list_gallery (request):
-    #gallery = Gallery.objects.all()
-    #return render(request, 'photographygal/homepage.html',
-    #{'gallery': gallery}) #show all thumbnails of gallery picture before selecting one to see all pictures inside
+def add_photo (request): #add to gallery by registered user
+    if request.method=="POST":
+        form = PictureForm(data=request.POST)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.save()
+            return redirect(to='list_photo') #I want all pictures to display
+    else:
+        form = PictureForm()
+    return render(request, 'photographygal/add_photos.html', {'form': form})
 
-#def detail_gallery (request):
-    #gallery_inside= Picture.objects.all()
-    #return render(request, 'photographygal/list_picture.html',
-    #{'picture': picture}) #show all thumbnails of gallery picture before selecting to see details 
 
 
-def list_picture(request): #when requesting an url of individual gallery
+def list_photo(request): #when requesting an url of individual gallery
     pass
 
-def detail_picture(request): #if registered
+
+def detail_photo(request): #if registered
     pass
 
 def upvote_star (request): #option to registered users
-    pass 
+    pass
 
 
 
@@ -136,6 +131,13 @@ def edit_gallery (request): #if registered edit and post and save or redirect to
     pass
 
 def delete_gallery (request): #if registered edit and post and save or redirect to sign up
+    pass
+
+
+def edit_photo (request): #if registered edit and post and save or redirect to sign up
+    pass
+
+def delete_photo (request): #if registered edit and post and save or redirect to sign up
     pass
 
 #def upvote_star (request) jason request?
