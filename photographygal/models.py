@@ -2,6 +2,7 @@ from django.db import models
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 from users.models import User
+#from django.core.exceptions import FieldDoesNotExist, FieldError
 #from imagekit___
 
 #GALLERY
@@ -61,18 +62,18 @@ from users.models import User
 
 # Create your models here.
 class Gallery (models.Model):
-    #creator = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='gallery') #one user may create many galleries
-    name = models.CharField (max_length = 150, null=False, blank=False)
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='user', null=True, blank=True) #one user may create many galleries
+    title = models.CharField (max_length = 150, null=False, blank=False)
     description = models.TextField(max_length= 400)
     image = models.ImageField(upload_to='gallery', null=True)
-    image_reg = ImageSpecField(source='image', processors=[ResizeToFit (200, 200)],format='JPEG',options={'quality': 80})
+    thumbnail = ImageSpecField(source='image', processors=[ResizeToFit (200, 200)],format='JPEG',options={'quality': 80})
 
 
 
 
 class Picture (models.Model):
     #owner = models.ForeignKey(User, on delete = model.CASCADE, related_name='picture') #if an owner is deleted all its pictures gets deleted
-    name = models.CharField(max_length = 150, null=False, blank=False)
+    title = models.CharField(max_length = 150, null=False, blank=False)
     description = models.TextField(max_length= 400, null=False, blank=False)
-    image = models.ImageField(upload_to='gallery', null=True)
+    image = models.ImageField(upload_to='gallery', null=True) #inside gallery
 

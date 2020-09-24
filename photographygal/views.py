@@ -5,7 +5,6 @@ from imagekit.processors import ResizeToFill
 from django.views import View
 from .models import Gallery, Picture
 from .forms import  GalleryForm, PictureForm
-#from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required 
 
 #GALLERY
@@ -83,7 +82,7 @@ def homepage(request):
     return render(request, "photographygal/homepage.html")
     
 
-
+#@ login login_required
 def add_gallery(request):
     if request.method == 'GET':
         form =GalleryForm()

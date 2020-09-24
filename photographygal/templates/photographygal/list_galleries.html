@@ -5,11 +5,16 @@
 <p>All Galleries</p>
 
     {% for gallery in galleries %}
+    <h3>title</h3>
+    {{gallery.title }}
+    <h3>description</h3>
+    {{gallery.description}}
     {% if gallery.image %}
-        <img src='{{ gallery.image.url}}'/>
+        <a href=></a><img src='{{ gallery.thumbnail.url}}'/></a>
     {% endif %}
     {% empty %}
         <p>hello {{ user.username }} you have no galleries added</p>
     {% endfor %}
+
 
 {% endblock %}

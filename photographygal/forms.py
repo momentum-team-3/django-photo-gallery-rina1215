@@ -6,10 +6,11 @@ class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
         fields = [
-            #"creator"
-            "name",
+            #"user",
+            "title",
             "description",
             "image",
+            #"thumbnail",
             
             
             
@@ -22,7 +23,7 @@ class PictureForm(forms.ModelForm):
     class Meta:
         model = Picture
         fields = [
-            "name",
+            "title",
             "description",
             "image",
 
