@@ -26,6 +26,7 @@ class PictureForm(forms.ModelForm):
             "title",
             "description",
             "image",
+            "gallery"
 
 
         ]

@@ -68,12 +68,15 @@ class Gallery (models.Model):
     image = models.ImageField(upload_to='gallery', null=True)
     thumbnail = ImageSpecField(source='image', processors=[ResizeToFit (200, 200)],format='JPEG',options={'quality': 80})
 
+    def __str__(self):
+        return self.title
+
 
 
 
 class Picture (models.Model):
-    #owner = models.ForeignKey(User, on delete = model.CASCADE, related_name='picture') #if an owner is deleted all its pictures gets deleted
+    gallery = models.ForeignKey(to=Gallery, on_delete = models.CASCADE, related_name='gallery', null=True, blank=True) # gallery FK to picture
     title = models.CharField(max_length = 150, null=False, blank=False)
     description = models.TextField(max_length= 400, null=False, blank=False)
-    image = models.ImageField(upload_to='gallery', null=True) #inside gallery
+    image = models.ImageField(upload_to='gallery', null=True) #inside media dir gallery (?)
 

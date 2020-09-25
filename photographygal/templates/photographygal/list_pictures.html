@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>All Photos</p>
+
+    {% for image in gallery %}
+    <h3>title</h3>
+    {{image.title }}
+    {{image.description }}
+<img src='{{image.image.url}}'/>
+    {% endfor %}
+
+
+{% endblock %}

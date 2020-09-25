@@ -93,6 +93,27 @@ def add_gallery(request):
             return redirect (to='list_gallery')
     return render (request, "photographygal/add_galleries.html", {'form':form})
 
+def add_photo(request):
+    if request.method == 'GET':
+        form =PictureForm()
+    else:
+        form=PictureForm(request.POST) #accept data from db and any files to download
+        if form. is_valid():
+            form.save()
+            return redirect (to='list_pictures')
+    return render (request, "photographygal/add_photos.html", {'form':form})
+
+#def add_photo (request): #add to gallery by registered user
+    #if request.method=="POST":
+        #form = PictureForm(request.POST)
+        #if form.is_valid():
+            #image = form.save
+            #image.save()
+            #return redirect(to='list_pictures') #I want all pictures to display
+    #else:
+        #form = PictureForm()
+    #return render(request, 'photographygal/add_photos.html', {'form': form})
+
 
 def list_gallery (request):
     galleries = Gallery.objects.all()
@@ -100,22 +121,10 @@ def list_gallery (request):
     return response
 
 
+def list_pictures(request, pk):
+    galleries = Picture.objects.filter(pk=pk)
+    return render(request,'photographygal/list_pictures.html', {'galleries': galleries, "pk": pk})#pk of gallery insert pictures there
 
-def add_photo (request): #add to gallery by registered user
-    if request.method=="POST":
-        form = PictureForm(data=request.POST)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.save()
-            return redirect(to='list_photo') #I want all pictures to display
-    else:
-        form = PictureForm()
-    return render(request, 'photographygal/add_photos.html', {'form': form})
-
-
-
-def list_photo(request): #when requesting an url of individual gallery
-    pass
 
 
 def detail_photo(request): #if registered

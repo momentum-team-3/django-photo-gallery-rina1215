@@ -39,12 +39,9 @@ urlpatterns = [
 
     #PHOTO url's path
     path('photographygal/add_photo/', views.add_photo, name='add_photo'),
+    path('photographygal/list_picture/<int:pk>/', views.list_pictures, name='list_pictures'), #pk gallery 
 
-    #gallery view url
-    #path("gallery/view/<int:gallery_pk>", views.view_gallery, name="view_gallery"),
-    #path('photographygal/', views.list_gallery, name='gallery'),
-    #path('photographygal/', views.add_gallery, name='gallery'),
-    #"/photographygal/add_galleries.html"
+ 
 
 ] + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
