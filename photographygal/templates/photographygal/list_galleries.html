@@ -2,19 +2,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>All Galleries</p>
+<p>hello {{ user.username }}, Select a Library to View its Content</p>
 
     {% for gallery in galleries %}
-    <h3>title</h3>
+    <a href="{% url 'list_pictures' gallery.pk %}"><h3>title</h3></a>
     {{gallery.title }}
-    <h3>description</h3>
+    
+    <a href="{% url 'list_pictures' gallery.pk %}"><h3>description</h3></a>
+    <p><a href="{% url 'add_photo' %}">Add photos to this GaL|3rY</a></p>
     {{gallery.description}}
+
+
     {% if gallery.image %}
-        <a href=></a><img src='{{ gallery.thumbnail.url}}'/></a>
+    <a href="{% url 'list_pictures' gallery.pk %}"><img src='{{ gallery.thumbnail.url}}'
+        alt="add photo to gallery"></a>
     {% endif %}
     {% empty %}
         <p>hello {{ user.username }} you have no galleries added</p>
     {% endfor %}
+
+
 
 
 {% endblock %}

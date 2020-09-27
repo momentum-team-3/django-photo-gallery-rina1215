@@ -75,7 +75,7 @@ class Gallery (models.Model):
 
 
 class Picture (models.Model):
-    gallery = models.ForeignKey(to=Gallery, on_delete = models.CASCADE, related_name='gallery', null=True, blank=True) # gallery FK to picture
+    gallery = models.ForeignKey(to=Gallery, on_delete = models.CASCADE, related_name='pictures', null=True, blank=True) # gallery FK to picture
     title = models.CharField(max_length = 150, null=False, blank=False)
     description = models.TextField(max_length= 400, null=False, blank=False)
     image = models.ImageField(upload_to='gallery', null=True) #inside media dir gallery (?)

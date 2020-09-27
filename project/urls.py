@@ -19,11 +19,14 @@ from django.urls import include, path
 from django.conf.urls import include
 from django.conf.urls.static import static
 from rest_framework import routers, serializers, viewsets
+from api import views as api_views
 
 #from view of my app to bring my function 
 from photographygal import views
 
-
+router = routers.DefaultRouter()
+router.register('pictures', api_views.PictureViewSet)
+router.register('galleries', api_views.GalleryViewSet) #equivalant to path, related to classpicture viewset
 
 #list of with individual routes to match with view function to get executed
 
@@ -31,7 +34,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='homepage'),
     path('accounts/', include('registration.backends.simple.urls')),
-    #path('api-auth/', include('rest_framework.urls'))    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #GALLERY url's path
     path('photographygal/add_gallery/', views.add_gallery, name='add_gallery'),
     path('photographygal/list_gallery/', views.list_gallery, name="list_gallery"),
@@ -39,11 +42,16 @@ urlpatterns = [
 
     #PHOTO url's path
     path('photographygal/add_photo/', views.add_photo, name='add_photo'),
-    path('photographygal/list_picture/<int:pk>/', views.list_pictures, name='list_pictures'), #pk gallery 
+    path('photographygal/list_pictures/<int:gallery_pk>/', views.list_pictures, name='list_pictures'), #pk picture to an specific gal 
+    path('api/', include(router.urls)),
+    #path('api/gallery/', api_views.list_gallery),
+    #path('api/pictures', api_views.)
 
- 
+   
 
-] + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+
+]+ static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

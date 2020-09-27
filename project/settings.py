@@ -53,13 +53,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'photographygal',
     'imagekit',
-    #'rest_api'
+    'api',
     
     
 
     # Third-party
     'debug_toolbar',
     'django_extensions',
+    'rest_framework',
 
     # Project-specific
     'users.apps.UsersConfig',
@@ -167,3 +168,9 @@ LOGIN_REDIRECT_URL = '/' #how to redirect to hp?
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ]
+}
