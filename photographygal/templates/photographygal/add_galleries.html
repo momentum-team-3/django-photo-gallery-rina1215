@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h5>NAME YOUR new Gal|3ry, write a short description and upload your pictures</h5>
+<p>Create new Gal|3ry, write a short description and upload your pictures</p>
 
 <form action="{% url 'add_gallery' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}

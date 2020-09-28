@@ -1,14 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>All Photos</p>
+<p>{{ user.username }}, welcome to GaL|3rY {{gallery.title}}</p>
 
     {% for image in gallery.pictures.all %}
-    <h3>{{image.title }}</h3>
-    <h2>{{image.description }}</h2>
+    <h3>title:</h3>{{image.title }}
+    <h3>description:</h3>{{image.description }}
 <img src='{{image.image.url}}'/>
+
+
+
 <p><h3>&#10133;</h3><a href="{% url 'add_photo' %}">Add photos to GaL|3rY</a></p>
     {% endfor %}
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

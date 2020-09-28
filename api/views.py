@@ -6,9 +6,10 @@ from api.serializers import GallerySerializer, PictureSerializer
 from rest_framework.views import Response
 from rest_framework.decorators import api_view
 from rest_framework import viewsets, permissions, authentication
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.parsers import FileUploadParser
-
+from rest_framework.views import APIView
+from parser import ParserError
 #local
 from photographygal.models import Gallery, Picture
 
@@ -23,7 +24,7 @@ class GalleryListView(generics.ListCreateAPIView):
             serializer.save(user=self.request.user)
 
 #to GET a gallery and view all of the gallery list, all its fields, title, id, description
-class GalleryDetailView (generics.RetrieveUpdateDestroyAPIView): 
+class GalleryDetailView (generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GallerySerializer
 
     def get_queryset(self):  #I will only see the galleries that the user owns
@@ -49,13 +50,31 @@ class PictureViewSet(viewsets.ModelViewSet):
     permission_classes = [ permissions.IsAuthenticated ]
 
 
-#class GalleryImageView(APIView):
-    #parser_classes = (FileUploadParser)
+class GalleryImageView(APIView):
+    parser_classes = (FileUploadParser, )
 
-    #def put(self, request, pk):
-        #image = get_object_or_404(self.request.user.galleries, pk=pk)
-        #if 'file' not in request.data:
-            #raise ParserError('Empty content')
-        #file = request.data['file']
-        #gallery = image.save(file.name, file, save=True)
-        #return Response(status=status.HTTP_200_OK)
+    def post(self, request, pk):
+        gallery = get_object_or_404(self.request.user.galleries, pk=pk)
+        if 'file' not in request.data:
+            raise ParserError('Empty content')
+        file = request.data['file']
+        image = Picture.save(file.name, file, save=True)
+        image.gallery = gallery
+        image.save()
+        return Response(status=status.HTTP_200_OK)
+
+'''
+        class PhotoImageView(APIView):
+        parser_classes = (FileUploadParser, )
+    def put(self, request, pk):
+        photo = get_object_or_404(self.request.user.owner_photos, pk=pk)
+        #read the uploaded file
+        #set image on the recipe to the uploaded file
+        #save the recipe
+        #let the user know things are good
+        if 'file' not in request.data:
+            raise ParseError('empty content')
+    
+        file = request.data['file']
+        photo.photo.save(file.name, file, save=True)
+        return Response(status=status.HTTP_200_OK)'''

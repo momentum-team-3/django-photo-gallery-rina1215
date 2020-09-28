@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p> {{ user.username }} Are you sure you would like to DELETE Ph0t0 "{{image.title }}"? </p><br></br>
+
+<form action="{% url 'delete_photo' picture_pk= picture.pk %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <button type="submit">yes</button>
+        </div>
+    </form>
+
+
+{% endblock %}

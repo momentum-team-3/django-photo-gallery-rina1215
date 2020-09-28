@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFill
@@ -68,6 +67,3 @@ def delete_photo (request): #if registered edit and post and save or redirect to
     pass
 
 #def upvote_star (request) jason request?
-
-
-
