@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'photographygal',
     'imagekit',
     'api',
-    
+    #'crispy_forms',
     
 
     # Third-party
@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     
     
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
