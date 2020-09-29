@@ -62,7 +62,7 @@ from users.models import User
 
 # Create your models here.
 class Gallery (models.Model):
-    user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='user', null=True, blank=True) #one user may create many galleries
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='galleries', null=True, blank=True) #one user may create many galleries
     title = models.CharField (max_length = 150, null=False, blank=False)
     description = models.TextField(max_length= 400)
     image = models.ImageField(upload_to='gallery', null=True)

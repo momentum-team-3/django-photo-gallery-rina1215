@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'photographygal',
     'imagekit',
     'api',
-    #'crispy_forms',
+    'crispy_forms',
     
 
     # Third-party
@@ -146,6 +146,7 @@ STATICFILES_DIRS = [
 ]
 #STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 # Custom user model
+CRISPY_TEMPLATE_PACK = 'boostrap4'
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -173,6 +174,9 @@ if DEBUG:
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-    'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ]
 }

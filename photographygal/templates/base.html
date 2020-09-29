@@ -4,55 +4,22 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>pHoTo gALlerY</title>
 </head>
+<body>
+
+
   <h1><pre> Ph0t0 GaL|3rY</pre></h1>
 
 
-</head>
-
-<div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-
-</div>
-<body>
   {% block content %}{% endblock %}
-  
+
+  <a href="{% url 'homepage' %}">homepage</a>
 </body>
 </html>
-
-<a href="{% url 'homepage' %}">homepage</a>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-
-
-
-
-
-
-body {
-  background-color: #f1f1f2;
-  padding: 20px;
-  font-family: Arial;
-}
-
-
-
-h1 {
-  font-size: 50px;
-  word-break: break-all;
-}
 
 
 

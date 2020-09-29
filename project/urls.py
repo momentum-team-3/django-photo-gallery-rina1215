@@ -52,6 +52,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/gallery/', api_views.GalleryListView.as_view()),
     path('api/gallery/<int:gallery_pk>/', api_views.GalleryDetailView.as_view()),
+    path('api/gallery/<int:pk>/images/', api_views.GalleryImageView.as_view()),
     #path('api/pictures', api_views.)
 
 

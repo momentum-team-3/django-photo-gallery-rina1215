@@ -58,9 +58,10 @@ class GalleryImageView(APIView):
         if 'file' not in request.data:
             raise ParserError('Empty content')
         file = request.data['file']
-        image = Picture.save(file.name, file, save=True)
-        image.gallery = gallery
-        image.save()
+        image = Picture(gallery=gallery)
+        image.image.save(file.name, file, save=True)
+        #image.gallery = gallery
+        #image.image.save()
         return Response(status=status.HTTP_200_OK)
 
 '''
