@@ -63,19 +63,3 @@ class GalleryImageView(APIView):
         #image.gallery = gallery
         #image.image.save()
         return Response(status=status.HTTP_200_OK)
-
-'''
-        class PhotoImageView(APIView):
-        parser_classes = (FileUploadParser, )
-    def put(self, request, pk):
-        photo = get_object_or_404(self.request.user.owner_photos, pk=pk)
-        #read the uploaded file
-        #set image on the recipe to the uploaded file
-        #save the recipe
-        #let the user know things are good
-        if 'file' not in request.data:
-            raise ParseError('empty content')
-    
-        file = request.data['file']
-        photo.photo.save(file.name, file, save=True)
-        return Response(status=status.HTTP_200_OK)'''

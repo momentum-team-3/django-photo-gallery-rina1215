@@ -80,3 +80,11 @@ class Picture (models.Model):
     description = models.TextField(max_length= 400, null=False, blank=False)
     image = models.ImageField(upload_to='gallery', null=True) #inside media dir gallery (?)
 
+
+
+
+class Comments (models.Model):
+    author = models.ForeignKey(to=User, on_delete = models.CASCADE, related_name = 'comments')
+    image = models.ForeignKey(to=Picture, on_delete= models.CASCADE, related_name= 'comments')
+    text = models.TextField(max_length= 200)
+    date = models.DateTimeField (auto_now_add=True)

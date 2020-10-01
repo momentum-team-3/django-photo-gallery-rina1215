@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Gallery, Picture
+from .models import Gallery, Picture, Comments
 
 
 class GalleryForm(forms.ModelForm):
@@ -30,4 +30,11 @@ class PictureForm(forms.ModelForm):
             "gallery"
 
 
+        ]
+
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = [
+            'text'
         ]

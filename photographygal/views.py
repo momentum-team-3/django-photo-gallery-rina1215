@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFill
 from django.views import View
-from .models import Gallery, Picture
-from .forms import  GalleryForm, PictureForm
+from .models import Gallery, Picture, Comments
+from .forms import  GalleryForm, PictureForm, CommentsForm
 
 
 def homepage(request):
@@ -41,6 +41,21 @@ def add_photo(request):
             image.save()
             return redirect (to='list_pictures', gallery_pk=image.gallery.pk)
     return render (request, "photographygal/add_photos.html", {'form':form})
+
+
+def add_comment(request, image_pk):
+    image = get_object_or_404(Picture, pk = image_pk)
+    if request.method == 'GET':
+        form =CommentsForm()
+    else:
+        form=CommentsForm(data = request.POST)
+        if form. is_valid():
+            comments = form.save(commit=False)
+            comments.author = request.user
+            comments.image = image
+            comments.save()
+            return redirect (to='list_pictures', gallery_pk=image.gallery.pk)
+    return render (request, "photographygal/add_comment.html", {'form':form, 'image':image})
 
 def list_pictures(request, gallery_pk):
     gallery = get_object_or_404(Gallery, pk=gallery_pk)

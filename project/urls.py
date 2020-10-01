@@ -46,6 +46,7 @@ urlpatterns = [
     #PHOTO url's path
     path('photographygal/add_photo/', views.add_photo, name='add_photo'),
     path('photographygal/list_pictures/<int:gallery_pk>/', views.list_pictures, name='list_pictures'), #pk picture to an specific gal 
+    path('photographygal/add_comment/<int:image_pk>/', views.add_comment, name='add_comment'), #pk picture to an specific gal 
 
 
      #API url's path

@@ -3,25 +3,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>hello {{ user.username }}, Select a Library to View its Content</p>
-
-    {% for gallery in galleries %}
-    <a href="{% url 'list_pictures' gallery.pk %}"><h3>{{gallery.title }}</h3></a>
-    
-    <a href="{% url 'list_pictures' gallery.pk %}"><p>{{gallery.description}}</p></a>
-    <a href="{% url 'add_photo' %}"><p>add to {{gallery.title }} GaL|3rY <br></br><a href="{% url 'delete_gallery' gallery.pk %}">delete {{gallery.title }} GaL|3rY</a>
+<p>Hello {{ user.username }}, Select a GaL|3rY to View its Content</p>
 
 
-    {% if gallery.image %}
-    <a href="{% url 'list_pictures' gallery.pk %}"><img src='{{ gallery.thumbnail.url}}'
-        alt="add photo to gallery"></a>
-    {% endif %}
+
+<div class="main">
+
+{% for gallery in galleries %}
+
+<div class="row">
+    <div class="column">
+        <div class="card">
+        <div class="content">
+            <a href="{% url 'add_photo' %}"><p>Add</p></a>
+            <a href="{% url 'delete_gallery' gallery.pk %}">Delete</a><br></br> 
+            <a href="{% url 'list_pictures' gallery.pk %}"><img src='{{ gallery.thumbnail.url}} 'alt="Lights" style="width:100%"></a>
+            <h4>{{gallery.title }}</h4>
+            <p class="title">{{gallery.description}}</p>
+            <p><button class="button">Contact</button></p>
+    </div>
+</div>
+</div>
     {% empty %}
-        <p>hello {{ user.username }} you have no galleries added</p>
     {% endfor %}
-
-
-
+</div>
 
 {% endblock %}
+
 
