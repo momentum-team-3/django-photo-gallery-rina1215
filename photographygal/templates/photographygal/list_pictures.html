@@ -3,30 +3,31 @@
 
 {% block content %}
 
-<p><h3>{{ user.username }},</h3>Welcome to the GaL|3rY named: {{gallery.title }}</p>
-<a href="{% url 'list_pictures' gallery.pk %}"><img src='{{ gallery.thumbnail.url}}'
-    alt="add photo to gallery"></a></p>
-
-
 
 {% for image in gallery.pictures.all %}
 
+<p><h3>{{ user.username }},</h3>Welcome to the GaL|3rY named: {{gallery.title }}</p>
 
-<br></br>
 
-    <p>Picture name:</p>{{image.title }}
-    <p>Picture description:<p>{{image.description }}
-<img src='{{image.image.url}}'/>
+
+    <!-- <p>Picture name:</p>{{image.title }}
+    <p>Picture description:<p>{{image.description }} -->
 <p><a href="{% url 'add_photo' %}">To add more photos this GaL|3rY click here</a></p>
+
+<div class="container">
+  <a href="{% url 'add_comment' image_pk=image.pk %}"><img src='{{image.image.url}}' class="responsive" width="400" height="200"></a>
 {% if image.comments %}
-    {% for comment in image.comments.all %} 
+    {% for comment in image.comments.all %}
+  <div class="content">
+    <p><a href="{% url 'add_comment' image_pk=image.pk %}">To add comment this picture click here</a></p>
     <p>{{ comment.date }}</p>
-    <p class="tr">{{ comment.text }}</p>
+    <p>{{ comment.text }}</p>
+  </div>
+</div>
     {% endfor %}
 {% endif %}
 
 
-<p><a href="{% url 'add_comment' image_pk=image.pk %}">To add comment this picture click here</a></p>
 
 {% empty %}
 
@@ -37,21 +38,4 @@
 {% endfor %}
 
 {% endblock %}
-
-
-<div class="row">
-    <div class="column">
-      <div class="card">
-        <img src="img1.jpg" alt="Jane" style="width:100%">
-        <div class="container">
-          <h2>Jane Doe</h2>
-          <p class="title">CEO &amp; Founder</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-          <p>example@example.com</p>
-          <p><button class="button">Contact</button></p>
-        </div>
-      </div>
-    </div>
-
-<!--% if gallery.image %why don't i need to use if --else ? -->
 

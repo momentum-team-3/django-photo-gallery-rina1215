@@ -1,32 +1,36 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   <title>pHoTo gALlerY</title>
-
 </head>
 
 <body>
+  <div class="topnav">
+    <a href="{% url 'homepage' %}"><i class="fa fa-fw fa-home"></i>Homepage</a>
+    <a href="{% url 'auth_login' %}"><i class="fa fa-fw fa-user"></i>Log in</a>
+    <a href="{% url 'add_gallery' %}">Create</a>
+    <a href="{% url 'add_photo' %}">Add</a>
+    <a href="{% url 'list_gallery' %}">View</a>
+    <a href="{% url 'auth_logout' %}">Log out</a>
+    <a href="{% url 'registration_register' %}">Register</a>
+    <input type="text" placeholder="Search..">
+
+  </div>
 
   <h2><pre>Ph0t0 GaL|3rY</pre></h2>
   <hr>
-
-  {% block content %}{% endblock %}
-
-  <a href="{% url 'homepage' %}">homepage</a>
 </body>
+
 </html>
-
-
-
+{% block content %}{% endblock %}
 
 
 

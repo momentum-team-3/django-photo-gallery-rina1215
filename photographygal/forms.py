@@ -3,6 +3,7 @@ from django import forms
 from .models import Gallery, Picture, Comments
 
 
+
 class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
@@ -38,3 +39,5 @@ class CommentsForm(forms.ModelForm):
         fields = [
             'text'
         ]
+
+        

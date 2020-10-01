@@ -8,16 +8,8 @@
 
 
   {% if user.is_authenticated %}
-    <p>welcome,
+    <p>Welcome,
       {{ user.username }} <br></br>
-
-      <p><h3>&#10133;</h3><a href="{% url 'add_gallery' %}">Create new GaL|3rY</a></p>
-
-      <p><h3>&#10133;</h3><a href="{% url 'add_photo' %}">Add photos to GaL|3rY</a></p>
-
-
-      <p><h3>&#x25EF;</h3><a href="{% url 'list_gallery' %}">View GaL|3rY</a></p><br></br>
-
 
 
 
@@ -29,5 +21,8 @@
     </p>
   {% endif %}
 {% endblock %}
+
+
+
 
 

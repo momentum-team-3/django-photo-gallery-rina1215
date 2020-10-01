@@ -4,6 +4,7 @@ from imagekit.processors import ResizeToFill
 from django.views import View
 from .models import Gallery, Picture, Comments
 from .forms import  GalleryForm, PictureForm, CommentsForm
+from crispy_forms.helper import FormHelper
 
 
 def homepage(request):
