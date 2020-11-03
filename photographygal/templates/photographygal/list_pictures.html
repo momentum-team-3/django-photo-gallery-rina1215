@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% for image in gallery.pictures.all %}
+
+<p><h3>{{ user.username }},</h3>Welcome to the GaL|3rY named: {{gallery.title }}</p>
+
+
+
+    <!-- <p>Picture name:</p>{{image.title }}
+    <p>Picture description:<p>{{image.description }} -->
+<p><a href="{% url 'add_photo' %}">To add more photos this GaL|3rY click here</a></p>
+
+<div class="container">
+  <a href="{% url 'add_comment' image_pk=image.pk %}"><img src='{{image.image.url}}' class="responsive" width="400" height="200"></a>
+{% if image.comments %}
+    {% for comment in image.comments.all %}
+  <div class="content">
+    <p><a href="{% url 'add_comment' image_pk=image.pk %}">To add comment this picture click here</a></p>
+    <p>{{ comment.date }}</p>
+    <p>{{ comment.text }}</p>
+  </div>
+</div>
+    {% endfor %}
+{% endif %}
+
+
+
+{% empty %}
+
+<p>You currently have no photos added to this GaL|3rY.</p>
+<p>To start adding photos this GaL|3rY <a href="{% url 'add_photo' %}"><h4>click here.</h4></a></p>
+
+
+{% endfor %}
+
+{% endblock %}
+

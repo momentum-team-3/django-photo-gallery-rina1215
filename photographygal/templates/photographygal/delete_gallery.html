@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p> {{ user.username }} Are you sure you would like to DELETE GaL|3rY "{{gallery.title }}"? </p><br></br>
+
+<form action="{% url 'delete_gallery' gallery_pk=gallery.pk %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <button type="submit">yes</button>
+        </div>
+    </form>
+
+
+{% endblock %}
+
+
+
+

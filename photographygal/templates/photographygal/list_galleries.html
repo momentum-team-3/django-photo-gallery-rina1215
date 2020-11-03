@@ -1,0 +1,31 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<p>Hello {{ user.username }}</p>
+
+
+
+<div class="main">
+
+{% for gallery in galleries %}
+
+<div class="row">
+    <div class="column">
+        <div class="card">
+        <div class="content">
+            <p><a href="{% url 'delete_gallery' gallery.pk %}"><i class="fa fa-trash-o fa_custom"></i></a></p>
+            <a href="{% url 'list_pictures' gallery.pk %}"><img src='{{ gallery.thumbnail.url}} 'alt="gallery" style="width:100%"></a>
+            <h4>{{gallery.title }}</h4>
+            <p class="title">{{gallery.description}}</p>
+            <p><a href="{% url 'add_photo' %}"><button class="button">Add</button></p></a>
+    </div>
+</div>
+</div>
+    {% empty %}
+    {% endfor %}
+</div>
+
+{% endblock %}
+

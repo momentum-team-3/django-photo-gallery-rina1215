@@ -1,0 +1,117 @@
+
+/* logo */
+h2 {
+    font-size: 30px;
+
+}
+
+.topnav {
+  background-color: rgb(17, 17, 17);
+  overflow: hidden;
+}
+
+
+.topnav a {
+  float: left;
+  color: #dce0e4;
+  text-align: center;
+  padding: 14px 19px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+.topnav a:hover {
+  background-color: #555;
+  color:rgb(17, 17, 17);
+}
+
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+
+
+body {
+  background-color: #dce0e4;
+  padding: 80px;
+  font-family: ABeeZee;
+
+}
+
+.fa_custom {
+  color: #807c7c
+  }
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 35%;
+  padding: 0 8px;
+  margin-bottom: 16px;
+}
+
+.content {
+  background-color: white;
+  padding: 25px;
+}
+
+.card {
+  box-shadow: 0 4px 12px 0 rgba(59, 58, 58, 0.568);
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: #dce0e4;
+  background-color: rgb(17, 17, 17);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.main {
+  max-width: 800px;
+  margin: auto;
+}
+
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+
+
+

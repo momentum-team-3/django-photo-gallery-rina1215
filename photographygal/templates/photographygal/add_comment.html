@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<p>Picture name:</p>{{image.title }}
+<p>Picture description:<p>{{image.description }}
+<img src='{{image.image.url}}'/>
+
+<p> {{ user.username }}, you can add your comment </p><br>
+
+
+
+<form action="{% url 'add_comment' image_pk=image.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">submit</button>
+
+    </form>
+
+
+{% endblock %}

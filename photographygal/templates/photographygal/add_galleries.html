@@ -1,0 +1,21 @@
+
+<!--this is the first page for reg users in addition to the base.htm and conditons to what will show-->
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Create new Gal|3ry, write a short description and upload your pictures</p>
+
+<form action="{% url 'add_gallery' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div>
+        <button type="submit">upload photo</button>
+        </div>
+    </form>
+
+
+{% endblock %}
+
+
+
